@@ -8,6 +8,9 @@ public class webShooter : MonoBehaviour
     public Transform firePoint;
     Vector2 direction;
 
+    [SerializeField] Player player;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +22,10 @@ public class webShooter : MonoBehaviour
     {
         direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && player.getWebs() > 0)
         {
             Shoot();
+            player.decreaseWebs();
         }
     }
 

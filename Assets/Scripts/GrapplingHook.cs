@@ -7,6 +7,7 @@ public class GrapplingHook : MonoBehaviour
     [SerializeField] private float grappleLength;
     [SerializeField] private LayerMask grappleLayer;
     [SerializeField] private LineRenderer rope;
+    [SerializeField] Player player;
 
     private DistanceJoint2D joint;
     private Vector3 grapplePoint;
@@ -27,6 +28,8 @@ public class GrapplingHook : MonoBehaviour
     bool flipped = false;
     bool swinging = true;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +48,7 @@ public class GrapplingHook : MonoBehaviour
         direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && player.getWebs() > 0)
         {
            
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, Mathf.Infinity, grappleLayer);
@@ -67,6 +70,7 @@ public class GrapplingHook : MonoBehaviour
                 rope.SetPosition(1, Hookpoint.position);
 
                 //AnimRope.StartRopeAnim(grapplePoint);
+                player.decreaseWebs();
 
             }
 /*            if(transform.position.x - grapplePoint.x < 0)
