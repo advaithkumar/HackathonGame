@@ -5,6 +5,9 @@ using UnityEngine;
 public class SpawnMissile : MonoBehaviour
 {
     [SerializeField] private Object missile;
+    [SerializeField] private int ammo = 3;
+
+    bool startShoot = true;
 
 /*    public Transform[] spawners;
     private Transform spawnPoint;
@@ -20,7 +23,15 @@ public class SpawnMissile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(startShoot)
+        {
+            if(ammo > 0)
+            {
+                StartCoroutine(fireMissiles());
+                ammo--;
+            }
+                
+        }
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
@@ -28,13 +39,42 @@ public class SpawnMissile : MonoBehaviour
         Player player = hitInfo.GetComponent<Player>();
         if (player != null)
         {
-            MissileSpawn();
+            startShoot = true;
+            StartCoroutine(fireMissiles());
         }
     }
 
     void MissileSpawn()
     {
         GameObject o = (GameObject) Instantiate(missile, transform.position, Quaternion.identity);
+
+    }
+
+    IEnumerator fireMissiles()
+    {
+        /*        while(ammo > 0)
+                {
+                    ammo -= 1;
+                    GameObject o = (GameObject)Instantiate(missile, transform.position, Quaternion.identity);
+                    yield return new WaitForSeconds(2f);
+
+                    Debug.Log("missile");
+                }
+        */
+        while (startShoot == true)
+        {
+            startShoot = false;
+            if(ammo > 0)
+            {
+                GameObject o = (GameObject)Instantiate(missile, transform.position, Quaternion.identity);
+                yield return new WaitForSeconds(2f);
+                ammo--;
+            }
+            startShoot = true;
+
+
+        }
+
 
     }
 

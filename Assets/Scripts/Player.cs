@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        Debug.Log("Item");
+        //Debug.Log("Item");
         ItemPickup item = hitInfo.GetComponent<ItemPickup>();
         if (item != null)
         {
