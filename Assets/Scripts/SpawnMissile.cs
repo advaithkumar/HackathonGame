@@ -23,23 +23,15 @@ public class SpawnMissile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(startShoot)
-        {
-            if(ammo > 0)
-            {
-                StartCoroutine(fireMissiles());
-                ammo--;
-            }
-                
-        }
+
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
+        
         Player player = hitInfo.GetComponent<Player>();
-        if (player != null)
+        if (player != null && hitInfo.CompareTag("Player"))
         {
-            startShoot = true;
             StartCoroutine(fireMissiles());
         }
     }
@@ -52,39 +44,34 @@ public class SpawnMissile : MonoBehaviour
 
     IEnumerator fireMissiles()
     {
-        /*        while(ammo > 0)
-                {
-                    ammo -= 1;
-                    GameObject o = (GameObject)Instantiate(missile, transform.position, Quaternion.identity);
-                    yield return new WaitForSeconds(2f);
-
-                    Debug.Log("missile");
-                }
-        */
-        while (startShoot == true)
+        while (ammo > 0)
         {
-            startShoot = false;
-            if(ammo > 0)
+            ammo -= 1;
+            GameObject o = (GameObject)Instantiate(missile, transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(1f);
+
+        }
+
+/*        while (startShoot == true)
+        {
+            if (ammo > 0)
             {
                 GameObject o = (GameObject)Instantiate(missile, transform.position, Quaternion.identity);
                 yield return new WaitForSeconds(2f);
                 ammo--;
             }
-            startShoot = true;
-
-
-        }
+        }*/
 
 
     }
 
-/*    odds = Random.Range(1, 11); //gets a random odds
+    /*    odds = Random.Range(1, 11); //gets a random odds
 
-        *//*        if (odds <= 7) //70 percent I think, then spawn the small enemy
-                    enemy = enemies[0];
-                else
-                    enemy = enemies[1]; //else spawn the big enemy for 20 percent (could be different odds, not sure)*//*
-        enemy = enemies[0];
-        int i = Random.Range(0, spawners.Length);
-    spawnPoint = spawners[i];*/
+            *//*        if (odds <= 7) //70 percent I think, then spawn the small enemy
+                        enemy = enemies[0];
+                    else
+                        enemy = enemies[1]; //else spawn the big enemy for 20 percent (could be different odds, not sure)*//*
+            enemy = enemies[0];
+            int i = Random.Range(0, spawners.Length);
+        spawnPoint = spawners[i];*/
 }
