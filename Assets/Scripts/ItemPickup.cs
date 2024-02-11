@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
-    [SerializeField] string name;
+    [SerializeField] string itemName;
     private Vector3 offsetPos;
 
     // Start is called before the first frame update
@@ -22,7 +22,7 @@ public class ItemPickup : MonoBehaviour
 
     public string getName()
     {
-        return name;
+        return itemName;
     }
 
     public void DestroySelf()

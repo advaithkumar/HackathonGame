@@ -6,8 +6,8 @@ public class SpawnMissile : MonoBehaviour
 {
     [SerializeField] private Object missile;
     [SerializeField] private int ammo = 3;
+    [SerializeField] float difficulty = 0;
 
-    bool startShoot = true;
 
 /*    public Transform[] spawners;
     private Transform spawnPoint;
@@ -32,6 +32,8 @@ public class SpawnMissile : MonoBehaviour
         Player player = hitInfo.GetComponent<Player>();
         if (player != null && hitInfo.CompareTag("Player"))
         {
+            difficulty = (int)player.getTravel() / 500;
+            ammo = (int)difficulty + 1;
             StartCoroutine(fireMissiles());
         }
     }

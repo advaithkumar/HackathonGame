@@ -23,7 +23,6 @@ public class LevelParts : MonoBehaviour
         Randomize(buildings);
         Transform buildingOne = Instantiate(buildings[randomNum], position1.position, Quaternion.identity, this.transform);
         buildingOne.localScale = new Vector2(randomValueX, randomValueY);
-        Debug.Log(randomNum);
 
         Randomize(buildings);
         Transform buildingTwo = Instantiate(buildings[randomNum], position2.position, Quaternion.identity, this.transform);

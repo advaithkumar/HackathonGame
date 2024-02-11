@@ -10,6 +10,10 @@ public class rocket : MonoBehaviour
     Transform player;
     Rigidbody2D rb2d;
 
+    [SerializeField] ParticleSystem explosion;
+    [SerializeField] float range = 2f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +45,23 @@ public class rocket : MonoBehaviour
 
     public void DestroySelf()
     {
+        Instantiate(explosion, this.transform.position, this.transform.rotation);
+        var hitColliders = Physics2D.OverlapCircleAll(transform.position, range);
+
+        foreach (var hitcollider in hitColliders)
+        {
+            rocket r = hitcollider.GetComponent<rocket>();
+            if (r)
+            {
+                r.DestroySelf();
+            }
+        }
+
         Destroy(gameObject);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+         Gizmos.DrawWireSphere(transform.position, range);   //drawing a visual sphere in the scene for us to see
     }
 }

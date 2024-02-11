@@ -5,7 +5,7 @@ using UnityEngine;
 public class web : MonoBehaviour
 {
     [SerializeField] float speed = 1;
-    [SerializeField] float damage = 100;
+    //[SerializeField] float damage = 100;
     [SerializeField] float destroyTime = 2f;
 
     Rigidbody2D rb2d;

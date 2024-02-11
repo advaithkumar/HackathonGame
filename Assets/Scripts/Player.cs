@@ -8,16 +8,17 @@ public class Player : MonoBehaviour
     [SerializeField] int health = 100;
     [SerializeField] int maxWebs = 10;
     [SerializeField] int webs = 10;
-    [SerializeField] int keys = 0;
 
     [SerializeField] TextMeshProUGUI kScore;
     [SerializeField] TextMeshProUGUI kWebs;
     [SerializeField] HealthBar healthBar;
 
+    public Transform StartPos;
+    float travel;
+
     // Start is called before the first frame update
     void Start()
     {
-        kScore.text = keys.ToString();
         kWebs.text = webs.ToString();
 
         healthBar.SetHealth(health);
@@ -26,7 +27,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        travel = Mathf.Round((this.transform.position.x - StartPos.position.x) * 10);
+        kScore.text = travel.ToString();
     }
 
     public int getWebs()
@@ -46,11 +48,19 @@ public class Player : MonoBehaviour
         kWebs.text = webs.ToString();
     }
 
-    public void addKey()
+    public void addHealth()
     {
-        keys++;
-        kScore.text = keys.ToString();
+        if(health < 100)
+        {
+            health += 20;
+        }
     }
+
+    public float getTravel()
+    {
+        return travel;
+    }
+
 
     public void TakeDamage(int damage)
     {
@@ -73,7 +83,7 @@ public class Player : MonoBehaviour
             if (name.Equals("webs"))
                 addWebs();
             else if (name.Equals("key"))
-                addKey();
+                addHealth();
 
             item.DestroySelf();
 
