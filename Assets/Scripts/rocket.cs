@@ -19,6 +19,7 @@ public class rocket : MonoBehaviour
     {
         rb2d = this.GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player").transform;
+        Invoke("DestroySelf", 10f);
     }
 
     // Update is called once per frame
@@ -47,6 +48,7 @@ public class rocket : MonoBehaviour
     {
         Instantiate(explosion, this.transform.position, this.transform.rotation);
         var hitColliders = Physics2D.OverlapCircleAll(transform.position, range);
+        Destroy(gameObject);
 
         foreach (var hitcollider in hitColliders)
         {
@@ -57,7 +59,6 @@ public class rocket : MonoBehaviour
             }
         }
 
-        Destroy(gameObject);
     }
 
     void OnDrawGizmosSelected()

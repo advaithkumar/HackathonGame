@@ -15,11 +15,14 @@ public class LevelParts : MonoBehaviour
     float randomValueX, randomValueY;
     int randomNum;
     [SerializeField] float minY, maxY;
+    Transform player;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player").transform;
+
         Randomize(buildings);
         Transform buildingOne = Instantiate(buildings[randomNum], position1.position, Quaternion.identity, this.transform);
         buildingOne.localScale = new Vector2(randomValueX, randomValueY);
@@ -51,6 +54,8 @@ public class LevelParts : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(player.transform.position.x - this.transform.position.x > 90)
+            Destroy(gameObject);
+
     }
 }

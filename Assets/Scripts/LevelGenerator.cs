@@ -9,7 +9,7 @@ public class LevelGenerator : MonoBehaviour
 
     private Vector3 lastEndPosition;
 
-    private const float PLAYER_DISTANCE_SPAWN_LEVEL_PART = 75f;
+    private const float PLAYER_DISTANCE_SPAWN_LEVEL_PART = 60f;
     [SerializeField] Transform player;
 
     private void Awake()
@@ -18,11 +18,6 @@ public class LevelGenerator : MonoBehaviour
 
         SpawnLevelPart();
 
-        /*Transform lastLevelPartTransform;
-        lastLevelPartTransform = SpawnLevelPart(LevelPart_Start.Find("EndPosition").position);
-
-        lastLevelPartTransform = SpawnLevelPart(lastLevelPartTransform.Find("EndPosition").position);
-        lastLevelPartTransform = SpawnLevelPart(lastLevelPartTransform.Find("EndPosition").position);*/
 
         int startSpawnParts = 2;
         for (int i = 0; i < startSpawnParts; i++)

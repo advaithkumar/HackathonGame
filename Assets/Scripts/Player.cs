@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField] TextMeshProUGUI kScore;
     [SerializeField] TextMeshProUGUI kWebs;
     [SerializeField] HealthBar healthBar;
+
+    [SerializeField] Transform Groundcheck;  //groundcheck
 
     public Transform StartPos;
     float travel;
@@ -29,6 +32,13 @@ public class Player : MonoBehaviour
     {
         travel = Mathf.Round((this.transform.position.x - StartPos.position.x) * 10);
         kScore.text = travel.ToString();
+
+
+        if ((Physics2D.Linecast(transform.position, Groundcheck.position, 1 << LayerMask.NameToLayer("Ground"))) && webs <= 0)
+        {
+            Invoke("RestartScene", 2f);
+        }
+
     }
 
     public int getWebs()
@@ -53,6 +63,7 @@ public class Player : MonoBehaviour
         if(health < 100)
         {
             health += 20;
+            healthBar.SetHealth(health);
         }
     }
 
@@ -68,9 +79,16 @@ public class Player : MonoBehaviour
         healthBar.SetHealth(health);
         if (health <=0)
         {
-            UnityEditor.EditorApplication.isPlaying = false;
+            //UnityEditor.EditorApplication.isPlaying = false;
             //Destroy(gameObject);
+            RestartScene();
         }
+    }
+
+    public void RestartScene()
+    {
+        Scene thisScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(thisScene.name);
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)

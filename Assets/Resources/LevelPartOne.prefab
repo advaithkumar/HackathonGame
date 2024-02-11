@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b42a1b45fc80a9843b9c6eb4a1aefe27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: webs
+  itemName: webs
 --- !u!1 &617453322
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b42a1b45fc80a9843b9c6eb4a1aefe27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: key
+  itemName: key
 --- !u!58 &1771468813
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -653,6 +653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missile: {fileID: 0}
   ammo: 1
+  difficulty: 0
 --- !u!61 &7045416177703883602
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -690,7 +691,7 @@ GameObject:
   - component: {fileID: 6680042410331276973}
   - component: {fileID: 7207836643629202481}
   - component: {fileID: 7564997311792567589}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DarkGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -705,8 +706,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4533535757065081831}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15, y: -8.1621, z: 0}
-  m_LocalScale: {x: 1, y: 2.4989, z: 1}
+  m_LocalPosition: {x: 15.0164, y: -8.5726, z: 0}
+  m_LocalScale: {x: 1.0011, y: 3.8023262, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2973978908880846312}
@@ -890,6 +891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missile: {fileID: 0}
   ammo: 1
+  difficulty: 0
 --- !u!61 &6842109015507757452
 BoxCollider2D:
   m_ObjectHideFlags: 0

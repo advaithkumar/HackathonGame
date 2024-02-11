@@ -72,19 +72,9 @@ public class GrapplingHook : MonoBehaviour
                 rope.SetPosition(1, Hookpoint.position);
 
                 //AnimRope.StartRopeAnim(grapplePoint);
-                player.decreaseWebs();
+                
+            }
 
-            }
-/*            if(transform.position.x - grapplePoint.x < 0)
-            {
-                if (!sp.flipX)
-                    sp.flipX = true;
-            }
-            else if(transform.position.x - grapplePoint.x > 0)
-            {
-                if (sp.flipX)
-                    sp.flipX = false;
-            }*/
             
         }
         //Debug.Log(rb2d.velocity);
@@ -132,6 +122,9 @@ public class GrapplingHook : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
+            if(rope.enabled)
+                player.decreaseWebs();
+
             joint.enabled = false;
             rope.enabled = false;
         }
