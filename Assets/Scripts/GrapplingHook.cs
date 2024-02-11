@@ -9,6 +9,7 @@ public class GrapplingHook : MonoBehaviour
     [SerializeField] private LineRenderer rope;
     [SerializeField] Player player;
 
+
     private DistanceJoint2D joint;
     private Vector3 grapplePoint;
     private Rigidbody2D rb2d;
@@ -39,6 +40,7 @@ public class GrapplingHook : MonoBehaviour
         rb2d = this.GetComponent<Rigidbody2D>();
         sp = this.GetComponent<SpriteRenderer>();
         anim = this.GetComponent<Animator>();
+
 
     }
 

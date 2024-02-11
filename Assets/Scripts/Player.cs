@@ -1,17 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float health = 100;
+    [SerializeField] int health = 100;
+    [SerializeField] int maxWebs = 10;
     [SerializeField] int webs = 10;
     [SerializeField] int keys = 0;
+
+    [SerializeField] TextMeshProUGUI kScore;
+    [SerializeField] TextMeshProUGUI kWebs;
+    [SerializeField] HealthBar healthBar;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        kScore.text = keys.ToString();
+        kWebs.text = webs.ToString();
+
+        healthBar.SetHealth(health);
     }
 
     // Update is called once per frame
@@ -28,22 +37,26 @@ public class Player : MonoBehaviour
     public void decreaseWebs()
     {
         webs--;
+        kWebs.text = webs.ToString();
     }
 
-    public void addWebs(int num)
+    public void addWebs()
     {
-        webs += num;
+        webs = maxWebs;
+        kWebs.text = webs.ToString();
     }
 
     public void addKey()
     {
         keys++;
+        kScore.text = keys.ToString();
     }
 
     public void TakeDamage(int damage)
     {
         health -= damage;
-        if(health <=0)
+        healthBar.SetHealth(health);
+        if (health <=0)
         {
             UnityEditor.EditorApplication.isPlaying = false;
             //Destroy(gameObject);
@@ -58,7 +71,7 @@ public class Player : MonoBehaviour
         {
             string name = item.getName();
             if (name.Equals("webs"))
-                addWebs(5);
+                addWebs();
             else if (name.Equals("key"))
                 addKey();
 
